@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Expression Parser - CFG (Group 14)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-badges">
+                <span class="badge">Case Study 14</span>
+                <span class="badge backend-badge" id="backendStatusBadge">
+                    <span class="status-dot online"></span> Python Backend: parser.py
+                </span>
+            </div>
+            <h1>Arithmetic Expression Parser</h1>
+            <p class="subtitle">Context-Free Grammar (CFG) • Group 14 • Division B</p>
+            <div class="authors">Sanjivani College of Engineering • Dept. of Computer Engineering</div>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="expression">Enter an arithmetic expression to parse:</label>
+                <div class="input-wrapper">
+                    <input type="text" id="expression" placeholder="e.g., a + b * (c - d)" autocomplete="off" spellcheck="false">
+                    <button id="parseBtn">
+                        Parse <span class="arrow">→</span>
+                    </button>
+                </div>
+
+                <div class="preset-section">
+                    <span class="preset-label">Sample Test Cases:</span>
+                    <div class="preset-buttons">
+                        <button type="button" class="preset-btn" data-expr="a + b * c">a + b * c (Valid)</button>
+                        <button type="button" class="preset-btn" data-expr="(a + b) * c">(a + b) * c (Valid)</button>
+                        <button type="button" class="preset-btn" data-expr="10 + 20 / 5">10 + 20 / 5 (Valid)</button>
+                        <button type="button" class="preset-btn error-preset" data-expr="a + * b">a + * b (Invalid)</button>
+                        <button type="button" class="preset-btn error-preset" data-expr="a + b /">a + b / (Invalid)</button>
+                        <button type="button" class="preset-btn error-preset" data-expr="(a + b">(a + b (Invalid)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-container hidden" id="resultsContainer">
+                <div class="status-indicator" id="statusIndicator">
+                    <div class="icon" id="statusIcon"></div>
+                    <div class="status-meta">
+                        <h2 id="statusText">Valid Expression</h2>
+                        <p id="statusDescription">Derived successfully using CFG rules.</p>
+                    </div>
+                </div>
+
+                <div class="execution-badge" id="executionSource">
+                    ⚡ Executed directly via <strong>parser.py</strong>
+                </div>
+
+                <!-- Trace Log section from Python parser -->
+                <div class="details" id="traceContainer">
+                    <div class="details-header">
+                        <h3>TOC Derivation &amp; Parser Trace (from parser.py)</h3>
+                        <span class="step-count" id="stepCount">0 steps</span>
+                    </div>
+                    <div class="trace-log" id="traceLog">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
+                
+                <div class="details grammar-card">
+                    <h3>Grammar Rules (CFG)</h3>
+                    <div class="grammar-rules">
+                        <div class="rule-row">
+                            <span class="nt">E</span>
+                            <span class="arrow-sym">→</span>
+                            <span class="prod">E + T | E - T | T</span>
+                            <span class="note">(Addition / Subtraction)</span>
+                        </div>
+                        <div class="rule-row">
+                            <span class="nt">T</span>
+                            <span class="arrow-sym">→</span>
+                            <span class="prod">T * F | T / F | F</span>
+                            <span class="note">(Multiplication / Division)</span>
+                        </div>
+                        <div class="rule-row">
+                            <span class="nt">F</span>
+                            <span class="arrow-sym">→</span>
+                            <span class="prod">( E ) | id</span>
+                            <span class="note">(Parentheses / Identifiers / Numbers)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
